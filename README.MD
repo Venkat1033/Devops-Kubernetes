@@ -1,7 +1,7 @@
 #
 ##git clone repo :
 
-need to install local:
+#PREREQUISITES:
 
 
 kubectl:                   -- https://kubernetes.io/docs/tasks/tools/install-kubectl/
@@ -49,7 +49,7 @@ kubectl apply -f aws-auth.yaml
 
 kubectl get nodes 
 
-kubectl label node <nodename> app=worker
+kubectl label node ENTERNODENAME app=worker
 
 
 
@@ -64,15 +64,29 @@ helm init --service-account tiller
 
 #install dashboard using helm
 
-helm install --name DashBoard ./kubernetes-dashboard  --namespace kube-system
+helm install --name dashboard ./kubernetes-dashboard  --namespace kube-system
 
 kubectl get svc -n kube-system  -- to get external loadbalancer dns name
 
 check: https://ahwchehxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-wets2.coms
 
-login token: kubectl describe secret k8dashboard-kubernetes-dashboard-token-7725b -n kube-system
+login token:
+
+ kubectl get secrets -n kube-system
+
+ kubectl describe secrets ENTER YOUR DASHBOARD SECRET -n kube-system
+
+kubectl describe secret k8dashboard-kubernetes-dashboard-token-7725b -n kube-system
  
 Above serviceaccount have limited access on DashBoard. If you nedd complete access create serviceaccount and Bind to clusterroleBinding(clusterRole), then will get full access.
+
+#tiller service account have cluster admins permissions.
+
+# So, I'm usimg tiller service account for accessing dashboard
+
+kubectl get secrets -n kube-system
+
+ kubectl describe secret ENTER UR TILLER SECRET NAME -n kube-system
 
 
 #install tomcat -- pods on mutliAZs (pvc as EBS volumes)
