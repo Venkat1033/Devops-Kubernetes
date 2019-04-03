@@ -35,15 +35,19 @@ terraform output config-map-aws-auth > ../kubernetes/aws-auth.yaml
 cd ../kubernetes/
 
 export KUBECONFIG=kubeconfig
+
 kubectl config current-context
 
 kubectl get svc -->to check k8s service running
+
+
+kubectl apply -f aws-auth.yaml
+
 
 kubectl get nodes 
 
 kubectl label node <nodename> app=worker
 
-kubectl apply -f aws-auth.yaml
 
 
 #tiller service account for helm (pods on multiAZ)
