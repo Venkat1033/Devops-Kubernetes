@@ -34,11 +34,14 @@ terraform output config-map-aws-auth > ../kubernetes/aws-auth.yaml
 
 cd ../kubernetes/
 
+
+aws configure   --setup
+
 export KUBECONFIG=kubeconfig
 
 kubectl config current-context
 
-kubectl get svc -->to check k8s service running
+kubectl get svc --to check k8s service running
 
 
 kubectl apply -f aws-auth.yaml
