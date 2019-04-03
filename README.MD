@@ -12,14 +12,21 @@ terraform:                -- https://learn.hashicorp.com/terraform/getting-start
 
 helm:                     -- https://helm.sh/docs/using_helm/
 
-##terraform to setup eks with two worker nodes on Mutli AZ  
+##terraform to setup eks with two worker nodes on Mutli AZ
+
 cd eks-cluster/
+
 terraform init  
+
 terraform plan
+
 terraform apply
 
 
+
 terraform output kubeconfig > ../kubernetes/kubeconfig
+
+
 terraform output config-map-aws-auth > ../kubernetes/aws-auth.yaml
 
 
